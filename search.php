@@ -36,7 +36,6 @@
         </tr>
         <tr>
             <td>
-
             </td>
             <td>
                 <button type="submit" class="btn btn-success"name="submit">
@@ -51,7 +50,38 @@
 <?php
 if(isset($_GET["submit"]))
 {
-    $Emp=$_GET["getEmpCode"];
-    echo $Emp;
+  $Employee=$_GET["getEmpCode"];
+  $Servername="localhost";
+  $Dbusername="root";
+  $Dbpassword="";
+  $Dbname="mydb1";
+  $connection=new mysqli($Servername,$Dbusername,$Dbpassword,$Dbname);
+  $sql="SELECT  `Name`, `DOB`, `Email`, `District`, `Age`, `Username`, `password`, `Conformpassword` FROM `employee` WHERE `Employeecode`=$Employee";
+  $result=$connection->query($sql);
+    if($result->num_rows>0)
+    {
+        while($row=$result->fetch_assoc())
+        {
+            $Name=$row["Name"];
+            $DOB=$row["DOB"];
+            $Email=$row["Email"];
+            $District=$row["District"];
+            $Age=$row["Age"];
+            $User=$row["Username"];
+            $Password=$row["password"];
+            $conformpassword=$row["Conformpassword"];
+            echo"<table class='table'> <tr> <td> Name </td> <td> $Name </td> </tr>
+            <tr> <td> DOB </td> <td> $DOB </td> </tr>
+            <tr> <td> Email </td> <td> $Email </td> </tr>
+            <tr> <td> District </td> <td> $District </td> </tr>
+            <tr> <td> Age </td> <td> $Age </td> </tr>
+            <tr> <td> Username </td> <td> $User </td> </tr>
+            <tr> <td> password </td> <td> $Password </td> </tr>
+            <tr> <td> conformpassword</td> <td> $conformpassword </td> </tr>";
+        }
+    }
+    else{
+        echo "ivalid";
+    }        
 }
 ?>
