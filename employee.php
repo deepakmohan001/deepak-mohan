@@ -19,6 +19,9 @@
             <li class="nav-item">
               <a class="nav-link" href="delete.php">Delete</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="edit.php">Edit</a>
+            </li>
           </ul>
     </nav>
     <form method="GET">
@@ -65,6 +68,7 @@
                     <option value="kollam">Kollam</option>
                     <option value="pathanamthitta">Pathanamthitta</option>
                     <option value="Alappuzha">Alappuzha</option>
+                    <option value="kottayam">Kottayam</option>
                     <option value="Idukki">Idukki</option>
                     <option value="Eranakulam">Ernakulm</option>
                     <option value="Thrissur">Thrissur</option>
