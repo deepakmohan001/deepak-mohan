@@ -60,35 +60,37 @@ if(isset($_GET["submit"]))
     $Dbpassword="";
     $Dbname="mydb1";
     $connection=new mysqli($Servername,$Dbusername,$Dbpassword,$Dbname);
-    $sql="SELECT  `Name`, `DOB`, `Email`, `District`, `Age`, `Username`, `password`, `Conformpassword` FROM `employee` WHERE `Employeecode`=$EmployeCode";
+    $sql="SELECT `Name`, `DOB`, `Email`, `District`, `Age`, `Username`, `password`, `Conformpassword` FROM `employee` WHERE `Employeecode`=$EmployeCode";
     $result=$connection->query($sql);
     if($result->num_rows>0)
     {
         while($row=$result->fetch_assoc())
         {
-            $Name=$_GET["getName"];
-            $Dob=$_GET["getDob"];
-            $Email=$_GET["getEmail"];
-            $District=$_GET["getDistrict"];
-            $Age=$_GET["getAge"];
-            $User=$_GET["getUserName"];
-            $Password=$_GET["getPassword"];
-            $Conform=$_GET["getPass"];
+            $Name=$row["Name"];
+            $Dob=$row["DOB"];
+            $Email=$row["Email"];
+            $District=$row["District"];
+            $Age=$row["Age"];
+            $User=$row["Username"];
+            $Password=$row["password"];
+            $Conform=$row["Conformpassword"];
     
             echo "<form method='POST'><table class='table'> 
-            <tr> <td> name</td> <td> <input type='text'name='updatetitle' value='$name'/> </td> </tr>
-            <tr> <td> Dob </td> <td><input type='text'name='updateauthor' value='$Dob' </td> </tr>
-            <tr> <td> email </td> <td> <input type='text'name='updatedescription' value='$Email'</td> </tr>
-            <tr><td>district</td><td><input type='text'name='updateprice'value='$District'</td></tr>
-            <tr><td>age</td><td><input type='text'name='updatepublisher'value='$Age'</td></tr>
-            <tr><td>user</td><td><input type='text'name='updatepublisher'value='$User'</td></tr>
-            <tr><td>password</td><td><input type='text'name='updatepublisher'value='$Password'</td></tr>
-            <tr><td>conform</td><td><input type='text'name='updatepublisher'value='$Conform'</td></tr>
-            <tr><td><button type='submit' value='$EmployeCode' name='updatebutton' class='btn btn-success'/>update</button> </td></tr><br> </form>";    
+            <tr> <td> name</td> <td> <input type='text'name='updatename' value='$Name'/> </td> </tr>
+            <tr> <td> Dob </td> <td><input type='text'name='updatedob' value='$Dob' </td> </tr>
+            <tr> <td> email </td> <td> <input type='text'name='updateemail' value='$Email'</td> </tr>
+            <tr><td>district</td><td><input type='text'name='updatedistrict'value='$District'</td></tr>
+            <tr><td>age</td><td><input type='text'name='updateage'value='$Age'</td></tr>
+            <tr><td>user</td><td><input type='text'name='updateuser'value='$User'</td></tr>
+            <tr><td>password</td><td><input type='text'name='updatepassword'value='$Password'</td></tr>
+            <tr><td>conform</td><td><input type='text'name='updateconform'value='$Conform'</td></tr>
+            <tr><td><button type='submit' value='$EmployeCode' name='updatebutton' class='btn btn-success'/>
+            update</button> </td></tr><br> </form>";    
         }
     }
     else{
         echo "invalid";
+
     }
 
 }
@@ -108,7 +110,8 @@ if(isset($_POST["updatebutton"]))
     $Dbpassword="";
     $Dbname="mydb1";
     $connection=new mysqli($Servername,$Dbusername,$Dbpassword,$Dbname);
-    $sql="UPDATE `employee` SET ``Name`=,`DOB`=,`Email`=,`District`=,`Age`=,`Username`=,`password`=,`Conformpassword`= WHERE `Employeecode`=$empcode";
+    $sql="UPDATE `employee` SET `Name`='$upname',`DOB`= $updob,`Email`='$upemail',`District`='$updistrict',`Age`=$upage,`Username`='$user',
+    `password`='$password',`Conformpassword`='$conform' WHERE `Employeecode`=$empcode";
     $result=$connection->query($sql);
     if($result===TRUE)
     {

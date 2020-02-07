@@ -53,12 +53,23 @@
 </body>
 </html>
 <?php
+if(isset($_GET["getsubmit"]))
 {
-    if(isset($_GET["submit"]))
-    {
-        $Emp=$_GET["getEmpCode"];
-        echo $Emp;
-
-    }
+    $empcode=$_GET["getEmpCode"];
+    $ServerName="localhost";
+    $DbUserName="root";
+    $DbPassword="";
+    $DBName="mydb1";
+    $connection=new mysqli($ServerName,$DbUserName,$DbPassword,$DBName);
+    $sql="DELETE FROM `employee` WHERE `Employeecode`=$empcode";
+    $result=$connection->query($sql);
+      if($result===TRUE)
+      {
+          echo"details deleted";
+      }
+      else
+      {
+          echo $connection->error;
+      }
 }
 ?>
